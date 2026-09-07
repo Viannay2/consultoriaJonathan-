@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Montserrat,Arial,sans-serif;color:#17201d;background:#f3f6f4}
+a{text-decoration:none}
+header{position:absolute;z-index:5;top:0;left:0;width:100%;padding:22px 6%;display:flex;justify-content:space-between;align-items:center;color:#fff}
+.logo{font-size:22px;font-weight:800}.logo span{color:#28b57f}
+header a{color:#fff;border:1px solid #ffffff88;padding:9px 15px;border-radius:30px;font-size:11px;font-weight:700}
+.hero{min-height:720px;padding:120px 7%;display:flex;align-items:center;background:linear-gradient(120deg,#07100d,#16372d 55%,#07100d);color:#fff}
+.hero-box{max-width:850px}
+.tag{font-size:11px;letter-spacing:2px;font-weight:800;color:#28b57f}
+h1{font-size:clamp(38px,6vw,68px);line-height:1.05;margin:18px 0}
+.hero p{font-size:17px;line-height:1.7;color:#d3ddda;max-width:700px}
+.vagas{display:inline-block;color:#e9ad27;margin-top:22px;font-size:13px}
+.btn{display:inline-block;background:#27aa3b;color:#fff;border:0;border-radius:40px;padding:17px 27px;font-size:12px;font-weight:800;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.intro{padding:80px 7%;max-width:950px}
+.intro h2,.cta h2{font-size:clamp(30px,4vw,48px);line-height:1.1;margin:15px 0}
+.intro p{color:#65716c;max-width:650px;line-height:1.7}
+.cta{padding:70px 7%;background:#e3eee9;display:flex;align-items:center;justify-content:space-between;gap:30px}
+footer{background:#050908;color:#88938f;text-align:center;padding:25px;font-size:10px}
+
+.dark-page{background:#07100d;color:#fff;min-height:100vh}
+.quiz{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 20px 50px}
+.quiz-card{width:min(650px,100%);text-align:center}
+.progress{position:absolute;top:0;left:0;width:100%;height:4px;background:#1a3029}
+.progress span{display:block;height:100%;width:33%;background:#28b57f;transition:.3s}
+.step{color:#91a29b;font-size:12px;margin:8px 0 25px}
+.quiz-card h1{font-size:clamp(28px,5vw,46px)}
+.options{display:grid;gap:12px;margin:30px auto;max-width:500px}
+.option{background:#10221c;border:1px solid #2b5b4b;color:#fff;border-radius:12px;padding:17px;text-align:left;cursor:pointer;font-weight:600}
+.option:hover{border-color:#28b57f;background:#153027}
+.hint{font-size:11px;color:#83918c}
+
+.form-page{background:#eef2f0;min-height:100vh}
+.form-page header{position:relative;background:#07100d}
+.form-wrap{max-width:850px;margin:auto;padding:55px 20px 80px}
+.form-heading{text-align:center;margin-bottom:35px}
+.form-heading h1{font-size:clamp(32px,5vw,52px)}
+.form-heading p{color:#65716c;line-height:1.6}
+form{background:#fff;border-radius:15px;padding:32px;box-shadow:0 15px 40px #00000010}
+form label{display:block;font-size:12px;font-weight:700;margin-bottom:7px}
+form input,form select{width:100%;height:50px;border:1px solid #d1d9d5;border-radius:7px;padding:0 14px;margin-bottom:17px;background:#fff}
+.check{display:flex!important;gap:9px;color:#5c6763;font-weight:500!important;line-height:1.4}
+.check input{width:18px;height:18px;margin:0;flex:none}
+form .btn{width:100%}
+#message{text-align:center;color:#16855d;font-size:12px;font-weight:700;margin-top:12px}
+
+@media(max-width:700px){
+ header{padding:18px 20px}
+ .hero{min-height:680px;padding:120px 22px 70px}
+ .hero p{font-size:15px}
+ .intro{padding:65px 22px}
+ .cta{display:block;padding:60px 22px}
+ .cta .btn{margin-top:25px;width:100%;text-align:center}
+ form{padding:23px}
+}

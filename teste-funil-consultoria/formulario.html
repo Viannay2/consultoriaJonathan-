@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime+ | Inscrição</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="form-page">
+<header><div class="logo">PRIME<span>+</span></div></header>
+
+<main class="form-wrap">
+  <div class="form-heading">
+    <span class="tag">QUASE LÁ</span>
+    <h1>Agora queremos conhecer você.</h1>
+    <p>Preencha seus dados e nossa equipe entrará em contato para apresentar os próximos passos.</p>
+  </div>
+
+  <form id="leadForm">
+    <label>Nome completo</label>
+    <input required type="text" placeholder="Seu nome">
+
+    <label>E-mail</label>
+    <input required type="email" placeholder="seu@email.com">
+
+    <label>WhatsApp</label>
+    <input required type="tel" placeholder="(21) 99999-9999">
+
+    <label>Nome da empresa</label>
+    <input required type="text" placeholder="Sua empresa">
+
+    <label>Seu cargo</label>
+    <select required>
+      <option value="">Selecione</option>
+      <option>Proprietário(a)</option>
+      <option>Diretor(a)</option>
+      <option>Gestor(a)</option>
+      <option>Outro</option>
+    </select>
+
+    <label>Faturamento anual</label>
+    <select required>
+      <option value="">Selecione</option>
+      <option>Até R$ 100 mil</option>
+      <option>R$ 100 mil a R$ 500 mil</option>
+      <option>R$ 500 mil a R$ 1 milhão</option>
+      <option>Acima de R$ 1 milhão</option>
+    </select>
+
+    <label class="check"><input required type="checkbox"> <span>Autorizo o contato da equipe para falar sobre a imersão.</span></label>
+
+    <button class="btn" type="submit">QUERO GARANTIR MINHA VAGA →</button>
+    <p id="message"></p>
+  </form>
+</main>
+<script src="js/form.js"></script>
+</body>
+</html>
