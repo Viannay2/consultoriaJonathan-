@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Leads - Alana Nunes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #2a2535;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            background: #15121b;
+            border: 1px solid #2a2535;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #a855f7;
+        }
+
+        .stat-text {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #a855f7;
+            color: #a855f7;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            background: #15121b;
+            color: #aaa;
+            border: 1px solid #2a2535;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #a855f7;
+            color: white;
+            border-color: #a855f7;
+        }
+
+        .table-wrapper {
+            background: #15121b;
+            border: 1px solid #2a2535;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #0a0a0a;
+        }
+
+        th {
+            padding: 12px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+            color: #a855f7;
+            border-bottom: 1px solid #2a2535;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 10px 12px;
+            font-size: 12px;
+            color: #aaa;
+            border-bottom: 1px solid #2a2535;
+        }
+
+        tr:hover {
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .status-qualificado {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .status-nao-qualificado {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        .status-em-progresso {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1fac56;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .selection-info {
+            background: #a855f7;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn, .filter-group {
+                width: 100%;
+            }
+
+            table {
+                font-size: 11px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Painel de Leads</h1>
+            <p style="color: #666; font-size: 13px; margin-top: 5px;">Alana Nunes Contabilidade</p>
+        </header>
+
+        <!-- ESTATÍSTICAS -->
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="totalLeads">0</div>
+                <div class="stat-text">Total de Leads</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="leadsHoje">0</div>
+                <div class="stat-text">Hoje</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="leads7Dias">0</div>
+                <div class="stat-text">7 Dias</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="qualificados">0</div>
+                <div class="stat-text">Qualificados</div>
+            </div>
+        </div>
+
+        <!-- CONTROLES -->
+        <div class="controls">
+            <div class="filter-group" id="filterGroup"></div>
+            <div id="selectionInfo" style="display: none;"></div>
+            <button class="btn" id="exportPdfBtn" style="display: none;">📄 Exportar PDF Selecionados</button>
+            <button class="btn btn-secondary" id="limparFiltroBtn">Limpar Filtro</button>
+            <button class="btn btn-secondary" id="selecionarTodosBtn">Selecionar Tudo</button>
+            <button class="btn btn-secondary" id="desmarcarTodosBtn">Desmarcar Tudo</button>
+            <button class="btn btn-secondary" id="apagarSelecionadosBtn">Apagar Selecionados</button>
+        </div>
+
+        <!-- TABELA -->
+        <div class="table-wrapper">
+            <table id="leadsTable">
+                <thead>
+                    <tr>
+                        <th style="width: 30px;"><input type="checkbox" id="selectAll" class="checkbox"></th>
+                        <th>Nome</th>
+                        <th>WhatsApp</th>
+                        <th>E-mail</th>
+                        <th>Serviço</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                        <th style="width: 120px;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="leadsBody"></tbody>
+            </table>
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <p>Nenhum lead encontrado</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        let allLeads = [];
+        let filteredLeads = [];
+        let selectedLeads = new Set();
+        let currentFilter = 'todos';
+
+        function carregarLeads() {
+            allLeads = JSON.parse(localStorage.getItem('leads')) || [];
+            filtroAtivo();
+        }
+
+        function formatarData(dataStr) {
+            const data = new Date(dataStr);
+            return data.toLocaleDateString('pt-BR') + ' ' + data.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'});
+        }
+
+        function criarFiltros() {
+            const filtros = [
+                { id: 'todos', label: 'Todos' },
+                { id: 'hoje', label: 'Hoje' },
+                { id: '7dias', label: '7 Dias' },
+                { id: '30dias', label: '30 Dias' },
+                { id: 'completo', label: 'Completos' },
+                { id: 'progresso', label: 'Em Progresso' }
+            ];
+
+            const filterGroup = document.getElementById('filterGroup');
+            filtros.forEach(f => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn' + (f.id === 'todos' ? ' active' : '');
+                btn.textContent = f.label;
+                btn.onclick = () => aplicarFiltro(f.id);
+                filterGroup.appendChild(btn);
+            });
+        }
+
+        function aplicarFiltro(filtro) {
+            currentFilter = filtro;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            filtroAtivo();
+        }
+
+        function filtroAtivo() {
+            const agora = new Date();
+            const hoje = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate());
+            const hoje7dias = new Date(hoje.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+            filteredLeads = allLeads.filter(lead => {
+                const dataLead = new Date(lead.dataCaptura);
+                const dataSemHora = new Date(dataLead.getFullYear(), dataLead.getMonth(), dataLead.getDate());
+
+                switch(currentFilter) {
+                    case 'hoje':
+                        return dataSemHora.getTime() === hoje.getTime();
+                    case '7dias':
+                        return dataSemHora.getTime() >= hoje7dias.getTime();
+                    case '30dias':
+                        return dataSemHora.getTime() >= new Date(hoje.getTime() - 30 * 24 * 60 * 60 * 1000).getTime();
+                    case 'completo':
+                        return lead.status === 'completo';
+                    case 'progresso':
+                        return lead.status === 'em-progresso' || lead.status === 'iniciado';
+                    default:
+                        return true;
+                }
+            });
+
+            renderizarTabela();
+            atualizarEstatisticas();
+        }
+
+        function renderizarTabela() {
+            const body = document.getElementById('leadsBody');
+            const empty = document.getElementById('emptyState');
+            const table = document.querySelector('table');
+
+            body.innerHTML = '';
+            selectedLeads.clear();
+
+            if (filteredLeads.length === 0) {
+                empty.style.display = 'block';
+                table.style.display = 'none';
+                return;
+            }
+
+            empty.style.display = 'none';
+            table.style.display = 'table';
+
+            filteredLeads.forEach(lead => {
+                const row = document.createElement('tr');
+                const statusClass = lead.status === 'completo' && lead.qualificado ? 'status-qualificado' : 
+                                  lead.status === 'completo' && !lead.qualificado ? 'status-nao-qualificado' : 'status-em-progresso';
+                const statusText = lead.status === 'completo' && lead.qualificado ? '✅ Qualificado' :
+                                 lead.status === 'completo' && !lead.qualificado ? '⏸ Não Qualificado' : '⏳ Em Progresso';
+
+                row.innerHTML = `
+                    <td><input type="checkbox" class="checkbox lead-checkbox" data-id="${lead.id}"></td>
+                    <td><strong>${lead.nome}</strong></td>
+                    <td>${lead.whatsapp}</td>
+                    <td>${lead.email}</td>
+                    <td>${lead.servicoInteresse || '-'}</td>
+                    <td>${formatarData(lead.dataCaptura)}</td>
+                    <td class="${statusClass}">${statusText}</td>
+                    <td>
+                        <a href="https://wa.me/${lead.whatsapp.replace(/\D/g, '')}" target="_blank" class="btn-whatsapp">WhatsApp</a>
+                        <button class="btn-delete" onclick="deletarLead(${lead.id})">Deletar</button>
+                    </td>
+                `;
+                body.appendChild(row);
+            });
+
+            // Checkboxes
+            document.querySelectorAll('.lead-checkbox').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        selectedLeads.add(Number(e.target.dataset.id));
+                    } else {
+                        selectedLeads.delete(Number(e.target.dataset.id));
+                    }
+                    atualizarSelecao();
+                });
+            });
+        }
+
+        function atualizarSelecao() {
+            const info = document.getElementById('selectionInfo');
+            const btnPdf = document.getElementById('exportPdfBtn');
+
+            if (selectedLeads.size > 0) {
+                info.innerHTML = `${selectedLeads.size} lead(s) selecionado(s)`;
+                info.style.display = 'block';
+                btnPdf.style.display = 'block';
+            } else {
+                info.style.display = 'none';
+                btnPdf.style.display = 'none';
+            }
+        }
+
+        function atualizarEstatisticas() {
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+
+            document.getElementById('totalLeads').textContent = allLeads.length;
+            document.getElementById('leadsHoje').textContent = allLeads.filter(l => new Date(l.dataCaptura) >= hoje).length;
+            document.getElementById('leads7Dias').textContent = allLeads.filter(l => new Date(l.dataCaptura) >= new Date(hoje.getTime() - 7*24*60*60*1000)).length;
+            document.getElementById('qualificados').textContent = allLeads.filter(l => l.qualificado && l.status === 'completo').length;
+        }
+
+        function deletarLead(id) {
+            if (confirm('Deletar este lead?')) {
+                allLeads = allLeads.filter(l => l.id !== id);
+                localStorage.setItem('leads', JSON.stringify(allLeads));
+                carregarLeads();
+            }
+        }
+
+        function exportarPDF() {
+            const leadsParaExportar = allLeads.filter(l => selectedLeads.has(l.id));
+            
+            let html = `
+                <h2>Relatório de Leads - Alana Nunes</h2>
+                <p>Data: ${new Date().toLocaleDateString('pt-BR')}</p>
+                <table style="width:100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #f0f0f0;">
+                            <th style="border: 1px solid #ddd; padding: 8px;">Nome</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">WhatsApp</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">E-mail</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Data</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            leadsParaExportar.forEach(lead => {
+                const status = lead.status === 'completo' && lead.qualificado ? 'Qualificado' :
+                             lead.status === 'completo' && !lead.qualificado ? 'Não Qualificado' : 'Em Progresso';
+                html += `
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${lead.nome}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${lead.whatsapp}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${lead.email}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${formatarData(lead.dataCaptura)}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${status}</td>
+                    </tr>
+                `;
+            });
+
+            html += `</tbody></table>`;
+
+            const opt = {
+                margin: 10,
+                filename: 'leads-alana.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+            };
+
+            html2pdf().set(opt).from(html).save();
+        }
+
+        // EVENT LISTENERS
+        document.getElementById('limparFiltroBtn').onclick = () => aplicarFiltro('todos');
+        document.getElementById('selecionarTodosBtn').onclick = () => {
+            document.querySelectorAll('.lead-checkbox').forEach(cb => cb.checked = true);
+            filteredLeads.forEach(l => selectedLeads.add(l.id));
+            atualizarSelecao();
+        };
+        document.getElementById('desmarcarTodosBtn').onclick = () => {
+            document.querySelectorAll('.lead-checkbox').forEach(cb => cb.checked = false);
+            selectedLeads.clear();
+            atualizarSelecao();
+        };
+        document.getElementById('apagarSelecionadosBtn').onclick = () => {
+            if (selectedLeads.size > 0 && confirm(`Deletar ${selectedLeads.size} lead(s)?`)) {
+                allLeads = allLeads.filter(l => !selectedLeads.has(l.id));
+                localStorage.setItem('leads', JSON.stringify(allLeads));
+                carregarLeads();
+            }
+        };
+        document.getElementById('exportPdfBtn').onclick = exportarPDF;
+
+        // INIT
+        criarFiltros();
+        carregarLeads();
+    </script>
+</body>
+</html>
