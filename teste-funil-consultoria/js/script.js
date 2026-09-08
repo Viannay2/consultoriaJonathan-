@@ -30,6 +30,9 @@ const steps = {
             leadInfo.email = email || 'Não informado';
             leadInfo.dataCaptura = new Date().toLocaleString('pt-BR');
 
+            // SALVAR IMEDIATAMENTE
+            salvarLeadParcial('iniciado');
+
             showStep('cnpj');
         }
     },
@@ -306,6 +309,26 @@ function voltarPasso(stepAtual) {
     }
 }
 
+function salvarLeadParcial(status) {
+    const lead = {
+        id: Date.now(),
+        nome: leadInfo.nome,
+        whatsapp: leadInfo.whatsapp,
+        email: leadInfo.email || 'Não informado',
+        servicoInteresse: formData.servicoInteresse || 'em-progresso',
+        dataCaptura: leadInfo.dataCaptura,
+        qualificado: false,
+        status: status,
+        detalhes: formData
+    };
+
+    let leads = JSON.parse(localStorage.getItem('leads')) || [];
+    leads.push(lead);
+    localStorage.setItem('leads', JSON.stringify(leads));
+
+    console.log('✅ Lead parcial salvo:', lead);
+}
+
 function finalizarFormulario() {
     const servicoInteresse = formData.servicoInteresse || 'diagnostico';
     let isQualificado = true;
@@ -320,7 +343,27 @@ function finalizarFormulario() {
         mostrarMensagemNaoQualificado();
     }
 
-    salvarLead(servicoInteresse, isQualificado);
+    salvarLeadFinal(servicoInteresse, isQualificado);
+}
+
+function salvarLeadFinal(servicoInteresse, isQualificado) {
+    const lead = {
+        id: Date.now(),
+        nome: leadInfo.nome,
+        whatsapp: leadInfo.whatsapp,
+        email: leadInfo.email,
+        servicoInteresse: servicoInteresse,
+        dataCaptura: leadInfo.dataCaptura,
+        qualificado: isQualificado,
+        status: 'completo',
+        detalhes: formData
+    };
+
+    let leads = JSON.parse(localStorage.getItem('leads')) || [];
+    leads.push(lead);
+    localStorage.setItem('leads', JSON.stringify(leads));
+
+    console.log('✅ Lead final salvo:', lead);
 }
 
 function mostrarSucessoQualificado() {
@@ -328,14 +371,14 @@ function mostrarSucessoQualificado() {
         <div class="success-message">
             <div class="success-icon">✅</div>
             <h2>Perfeito!</h2>
-            <p>Temos uma solução que pode ajudar sua empresa.</p>
+            <p>Sua avaliação foi recebida com sucesso!</p>
             <p style="margin-top: 16px; font-size: 13px; color: #999;">
-                Recebemos suas informações e um de nossos especialistas poderá entrar em contato 
-                para entender melhor o seu negócio.
+                Um de nossos especialistas entrará em contato em breve para discutir as melhores estratégias 
+                para seu negócio crescer e gerar mais lucro. Prepare-se para uma transformação!
             </p>
-            <p style="margin-top: 24px; font-weight: 600;">${leadInfo.nome}, obrigado por confiar em nós!</p>
-            <button class="btn-primary" onclick="window.location.href='https://wa.me/5521999999999'; closeForm();" style="margin-top: 24px;">
-                Conversaremos no WhatsApp
+            <p style="margin-top: 24px; font-weight: 600;">${leadInfo.nome}, estamos ansiosos para trabalhar com você! 🚀</p>
+            <button class="btn-primary" onclick="closeForm();" style="margin-top: 24px;">
+                Fechar
             </button>
         </div>
     `;
@@ -358,25 +401,6 @@ function mostrarMensagemNaoQualificado() {
             <button class="btn-primary" onclick="closeForm();" style="margin-top: 24px;">Entendi, obrigado!</button>
         </div>
     `;
-}
-
-function salvarLead(servicoInteresse, isQualificado) {
-    const lead = {
-        id: Date.now(),
-        nome: leadInfo.nome,
-        whatsapp: leadInfo.whatsapp,
-        email: leadInfo.email,
-        servicoInteresse: servicoInteresse,
-        dataCaptura: leadInfo.dataCaptura,
-        qualificado: isQualificado,
-        detalhes: formData
-    };
-
-    let leads = JSON.parse(localStorage.getItem('leads')) || [];
-    leads.push(lead);
-    localStorage.setItem('leads', JSON.stringify(leads));
-
-    console.log('✅ Lead salvo:', lead);
 }
 
 console.log('✅ Sistema carregado!');
