@@ -92,10 +92,11 @@
 
         .hero p {
             font-size: 18px;
-            color: #aaa;
+            color: #ddd;
             line-height: 1.8;
             margin-bottom: 32px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+            font-weight: 500;
         }
 
         /* BOTÃO FIXO (FLUTUANTE) */
@@ -105,10 +106,10 @@
             right: 30px;
             background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
             color: white;
-            padding: 16px 32px;
+            padding: 14px 24px;
             border: none;
             border-radius: 50px;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -118,9 +119,11 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
-            min-width: 180px;
+            gap: 6px;
+            max-width: 200px;
             justify-content: center;
+            text-align: center;
+            line-height: 1.3;
         }
 
         .cta-floating:hover {
@@ -132,207 +135,11 @@
             transform: translateY(-1px);
         }
 
-        /* SEÇÃO DE CREDIBILIDADE */
-        .credibilidade {
-            background: #15121b;
-            padding: 60px 20px;
-            border-top: 1px solid #2a2535;
-        }
-
-        .credibilidade h2 {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 50px;
-            background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-bottom: 60px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .stat-card {
-            background: rgba(168, 85, 247, 0.1);
-            border: 1px solid #2a2535;
-            border-radius: 12px;
-            padding: 32px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            border-color: #a855f7;
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 42px;
-            font-weight: 700;
-            color: #a855f7;
-            margin-bottom: 8px;
-        }
-
-        .stat-text {
-            font-size: 14px;
-            color: #aaa;
-            line-height: 1.6;
-        }
-
-        /* CERTIFICAÇÕES E RECONHECIMENTOS */
-        .certificacoes {
-            background: #0a0a0a;
-            padding: 60px 20px;
-            border-top: 1px solid #2a2535;
-        }
-
-        .certificacoes h2 {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cert-item {
-            background: #15121b;
-            border: 1px solid #2a2535;
-            border-radius: 8px;
-            padding: 24px;
-            text-align: center;
-        }
-
-        .cert-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-
-        .cert-item h3 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        /* DIFERENCIAIS */
-        .diferenciais {
-            background: #15121b;
-            padding: 60px 20px;
-            border-top: 1px solid #2a2535;
-        }
-
-        .diferenciais h2 {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .diferenciais-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .diferencial-card {
-            background: #0a0a0a;
-            border: 1px solid #2a2535;
-            border-radius: 12px;
-            padding: 32px;
-            transition: all 0.3s ease;
-        }
-
-        .diferencial-card:hover {
-            border-color: #a855f7;
-            background: rgba(168, 85, 247, 0.05);
-        }
-
-        .diferencial-icon {
-            font-size: 36px;
-            margin-bottom: 16px;
-        }
-
-        .diferencial-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .diferencial-card p {
-            font-size: 14px;
-            color: #aaa;
-            line-height: 1.6;
-        }
-
-        /* DEPOIMENTOS */
-        .depoimentos {
-            background: #0a0a0a;
-            padding: 60px 20px;
-            border-top: 1px solid #2a2535;
-        }
-
-        .depoimentos h2 {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .depoimentos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .depoimento {
-            background: #15121b;
-            border: 1px solid #2a2535;
-            border-radius: 12px;
-            padding: 24px;
-        }
-
-        .stars {
-            color: #a855f7;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .depoimento p {
-            font-size: 14px;
-            color: #aaa;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            font-style: italic;
-        }
-
-        .depoimento-autor {
-            font-size: 12px;
-            color: #888;
-            font-weight: 600;
-        }
-
         /* SOBRE A ALANA */
         .sobre-alana {
-            background: linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(124,58,237,0.05) 100%);
+            background: linear-gradient(135deg, rgba(169, 85, 247, 0.13) 0%, rgba(124,58,237,0.05) 100%);
             padding: 60px 20px;
-            border-top: 1px solid #2a2535;
+            border-top: 1px solid #2a25355b;
         }
 
         .sobre-content {
@@ -393,8 +200,8 @@
         }
 
         .modal-content {
-            background: #15121b;
-            border: 1px solid #2a2535;
+            background: #15121be7;
+            border: 1px solid #2a2535cf;
             border-radius: 16px;
             padding: 40px;
             max-width: 600px;
@@ -468,7 +275,7 @@
         }
 
         .form-option-card:hover {
-            border-color: #a855f7;
+            border-color: #a955f7f8;
             background: rgba(168, 85, 247, 0.05);
         }
 
@@ -534,17 +341,34 @@
 
         footer {
             background: #0a0a0a;
-            padding: 20px;
+            padding: 30px 20px;
             text-align: center;
-            font-size: 12px;
+            font-size: 14px;
             color: #666;
-            border-top: 1px solid #2a2535;
+            border-top: 1px solid #2a2535ff;
             margin-bottom: 100px;
         }
 
-        footer a {
+        footer p {
+            margin-bottom: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .footer-links a {
             color: #a855f7;
             text-decoration: none;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
         }
 
         /* RESPONSIVE */
@@ -566,27 +390,11 @@
             .cta-floating {
                 bottom: 20px;
                 right: 20px;
-                padding: 12px 20px;
-                font-size: 12px;
-                min-width: auto;
-                width: auto;
-                max-width: 150px;
+                padding: 10px 14px;
+                font-size: 10px;
+                max-width: 130px;
             }
 
-            .stat-number {
-                font-size: 32px;
-            }
-
-            .cert-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .diferenciais-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .credibilidade h2,
-            .diferenciais h2,
             .cta-final h2 {
                 font-size: 24px;
             }
@@ -603,6 +411,10 @@
             .modal-content {
                 padding: 24px;
             }
+
+            .footer-links {
+                gap: 12px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -611,23 +423,9 @@
             }
 
             .cta-floating {
-                padding: 10px 16px;
-                font-size: 11px;
-                min-width: auto;
-                width: 120px;
-                gap: 4px;
-            }
-
-            .stat-number {
-                font-size: 24px;
-            }
-
-            .cert-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .diferenciais-grid {
-                grid-template-columns: repeat(2, 1fr);
+                padding: 8px 12px;
+                font-size: 9px;
+                max-width: 110px;
             }
 
             .form-option-card {
@@ -638,6 +436,11 @@
             footer {
                 margin-bottom: 70px;
             }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 8px;
+            }
         }
     </style>
 </head>
@@ -647,119 +450,6 @@
             <div class="logo">ALANA NUNES</div>
             <h1>Sua empresa organizada, regular e preparada para crescer.</h1>
             <p>Conte com uma contabilidade que entende a realidade do seu negócio. Cuidamos das suas obrigações contábeis e tributárias com soluções personalizadas.</p>
-        </div>
-    </section>
-
-    <!-- SEÇÃO DE CREDIBILIDADE -->
-    <section class="credibilidade">
-        <div class="container">
-            <h2>Por que escolher a Alana Nunes?</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-text">Empresas transformadas e regularizadas</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-text">Anos de experiência em contabilidade</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-text">Satisfação dos clientes</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">R$ 2M+</div>
-                    <div class="stat-text">Em economias para clientes</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CERTIFICAÇÕES -->
-    <section class="certificacoes">
-        <div class="container">
-            <h2>Certificações e Reconhecimentos</h2>
-            <div class="cert-grid">
-                <div class="cert-item">
-                    <div class="cert-icon">✅</div>
-                    <h3>Contador Certificado</h3>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-icon">🏆</div>
-                    <h3>Especialista Tributária</h3>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-icon">📜</div>
-                    <h3>Especialista em MEI/ME</h3>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-icon">🔒</div>
-                    <h3>Segurança de Dados</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DIFERENCIAIS -->
-    <section class="diferenciais">
-        <div class="container">
-            <h2>Nossos Diferenciais</h2>
-            <div class="diferenciais-grid">
-                <div class="diferencial-card">
-                    <div class="diferencial-icon">🎯</div>
-                    <h3>Consultoria Estratégica</h3>
-                    <p>Ajudamos seu negócio a crescer com planejamento tributário inteligente.</p>
-                </div>
-                <div class="diferencial-card">
-                    <div class="diferencial-icon">⚡</div>
-                    <h3>Atendimento Rápido</h3>
-                    <p>Respostas em 24h. Sua empresa continua em movimento sem burocracia.</p>
-                </div>
-                <div class="diferencial-card">
-                    <div class="diferencial-icon">💰</div>
-                    <h3>Redução de Impostos</h3>
-                    <p>Otimizamos sua carga tributária. Menos impostos = mais lucro.</p>
-                </div>
-                <div class="diferencial-card">
-                    <div class="diferencial-icon">📱</div>
-                    <h3>Tecnologia Moderna</h3>
-                    <p>Plataformas automatizadas. Você acompanha tudo em tempo real.</p>
-                </div>
-                <div class="diferencial-card">
-                    <div class="diferencial-icon">🤝</div>
-                    <h3>Parceria Verdadeira</h3>
-                    <p>Somos parceiros do seu negócio. Seu sucesso é nosso sucesso.</p>
-                </div>
-                <div class="diferencial-card">
-                    <div class="diferencial-icon">✅</div>
-                    <h3>Regularização Completa</h3>
-                    <p>Resolvemos pendências e irregularidades. Seu negócio seguro e legal.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DEPOIMENTOS -->
-    <section class="depoimentos">
-        <div class="container">
-            <h2>O que nossos clientes dizem</h2>
-            <div class="depoimentos-grid">
-                <div class="depoimento">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>"A Alana transformou minha empresa. Reduziu meus impostos em 40% e agora durmo tranquilo sabendo que tudo está em dia."</p>
-                    <div class="depoimento-autor">— João Silva, Empresário</div>
-                </div>
-                <div class="depoimento">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>"Atendimento rápido, profissional e que realmente entende o meu negócio. Recomendo muito para quem quer crescer!"</p>
-                    <div class="depoimento-autor">— Maria Santos, Diretora</div>
-                </div>
-                <div class="depoimento">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>"Regularizou tudo que estava pendente em minha empresa. Agora posso focar no que realmente importa: crescer."</p>
-                    <div class="depoimento-autor">— Pedro Costa, Gerente</div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -783,7 +473,7 @@
 
     <!-- BOTÃO FIXO FLUTUANTE -->
     <button class="cta-floating" id="ctaButton">
-        📋 QUALIFICAR AGORA
+        📋 Quero uma Avaliação Sem Compromisso
     </button>
 
     <div id="formModal" class="modal" style="display: none;">
@@ -795,7 +485,11 @@
 
     <footer>
         <p>&copy; 2026 Alana Nunes Contabilidade</p>
-        <p>Desenvolvido por <a href="#">Armindo Web</a></p>
+        <div class="footer-links">
+            <p>Desenvolvido por <a href="https://wa.me/5521999999999" target="_blank">Armindo Web</a></p>
+            <a href="https://wa.me/5521999999999" target="_blank">📱 WhatsApp</a>
+            <a href="https://instagram.com/seu-instagram" target="_blank">📸 Instagram</a>
+        </div>
     </footer>
 
     <script src="js/script.js"></script>
