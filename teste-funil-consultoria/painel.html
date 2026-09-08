@@ -121,7 +121,8 @@
             background: #15121b;
             border: 1px solid #2a2535;
             border-radius: 8px;
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
         }
 
         table {
@@ -302,7 +303,6 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         let allLeads = [];
         let filteredLeads = [];
@@ -463,47 +463,41 @@
         function exportarPDF() {
             const leadsParaExportar = allLeads.filter(l => selectedLeads.has(l.id));
             
-            let html = `
-                <h2>Relatório de Leads - Alana Nunes</h2>
-                <p>Data: ${new Date().toLocaleDateString('pt-BR')}</p>
-                <table style="width:100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background: #f0f0f0;">
-                            <th style="border: 1px solid #ddd; padding: 8px;">Nome</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">WhatsApp</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">E-mail</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Data</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
+            if (leadsParaExportar.length === 0) {
+                alert('Selecione pelo menos 1 lead para exportar');
+                return;
+            }
 
-            leadsParaExportar.forEach(lead => {
+            let texto = "RELATÓRIO DE LEADS - ALANA NUNES\n";
+            texto += "=" .repeat(60) + "\n";
+            texto += `Data: ${new Date().toLocaleDateString('pt-BR')}\n`;
+            texto += "=" .repeat(60) + "\n\n";
+
+            leadsParaExportar.forEach((lead, index) => {
                 const status = lead.status === 'completo' && lead.qualificado ? 'Qualificado' :
                              lead.status === 'completo' && !lead.qualificado ? 'Não Qualificado' : 'Em Progresso';
-                html += `
-                    <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${lead.nome}</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${lead.whatsapp}</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${lead.email}</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${formatarData(lead.dataCaptura)}</td>
-                        <td style="border: 1px solid #ddd; padding: 8px;">${status}</td>
-                    </tr>
-                `;
+                
+                texto += `${index + 1}. ${lead.nome}\n`;
+                texto += `   WhatsApp: ${lead.whatsapp}\n`;
+                texto += `   E-mail: ${lead.email}\n`;
+                texto += `   Data: ${formatarData(lead.dataCaptura)}\n`;
+                texto += `   Status: ${status}\n`;
+                texto += `   Serviço: ${lead.servicoInteresse || 'N/A'}\n`;
+                texto += "-".repeat(60) + "\n\n";
             });
 
-            html += `</tbody></table>`;
+            texto += `Total de Leads Exportados: ${leadsParaExportar.length}\n`;
 
-            const opt = {
-                margin: 10,
-                filename: 'leads-alana.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
-            };
+            // Criar e download do arquivo TXT (mais seguro que PDF)
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(texto));
+            element.setAttribute('download', `leads-alana-${new Date().getTime()}.txt`);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
 
-            html2pdf().set(opt).from(html).save();
+            alert(`✅ ${leadsParaExportar.length} lead(s) exportado(s) com sucesso!`);
         }
 
         // EVENT LISTENERS
